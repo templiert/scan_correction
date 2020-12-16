@@ -3,9 +3,9 @@
 This script is associated with a specific msem experiment.
 The msem experiment comprises 16 "shift".
 For each "shift", a set of 7 mFOVs is acquired:
-  *  *
-*  *  *
-  *  *
+  O  O
+O  O  O
+  O  O
 A mFOV is made of 61 sFOVs.
 There is a translation offset in the x axis between shift number 1 and shift number 2.
 There is the same translation offset between shift n and shift (n+1)
