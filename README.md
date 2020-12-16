@@ -28,3 +28,10 @@ To find the scan distortion, a vertical 10 pixel wide band from the translated i
 is fit to the non-translated image.
 
 ![Naming convention](scan_correction_naming.jpg?raw=true "Naming convention")
+
+The script 
+- calculates exponential fits for all beams
+- writes the fit results to a .txt file
+- create a montage like below to see the scan distortion on individual beams
+
+![Scan distortions](example_scan_distortion.jpg?raw=true "Scan distortions")
