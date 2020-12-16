@@ -32,6 +32,6 @@ is fit to the non-translated image.
 The script 
 - calculates exponential fits for all beams
 - writes the fit results to a .txt file
-- create a montage like below to see the scan distortion on individual beams
+- creates a montage like below to see the scan distortion on individual beams
 
 ![Scan distortions](example_scan_distortion.jpg?raw=true "Scan distortions")
