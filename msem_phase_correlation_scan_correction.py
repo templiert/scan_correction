@@ -170,8 +170,8 @@ HEXAGON_SPACINGS = [4,1,1,1,1,7,1,1,1,1,1,5,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,
 
 ###################################
 # select the root of the experiment
-# 8 nm pixel; 1 um sFOV overlap; 400 ns dwell time 
-root = r'M:\hess\calibration_tests_10_2020\calibration_8nm_1um_400ns_noSC__20201002_12-24-03'
+# # 8 nm pixel; 1 um sFOV overlap; 400 ns dwell time 
+# root = r'M:\hess\calibration_tests_10_2020\calibration_8nm_1um_400ns_noSC__20201002_12-24-03'
 
 # # 8 nm pixel; 1 um sFOV overlap; 1600 ns dwell time 
 # root = r'M:\hess\calibration_tests_10_2020\calibration_8nm_1um_1600ns_noSC_20201002_11-17-51'
@@ -179,8 +179,8 @@ root = r'M:\hess\calibration_tests_10_2020\calibration_8nm_1um_400ns_noSC__20201
 # # 4 nm pixel; 0.5 um sFOV overlap; 400 ns dwell time 
 # root = r'M:\hess\calibration_tests_10_2020\calibration_4nm_05um_400ns_noSC_20201002_12-48-40'
 
-# # 4 nm pixel; 0.5 um sFOV overlap; 1600 ns dwell time 
-# root =  r'M:\hess\calibration_tests_10_2020\calibration_4nm_05um_1600ns_noSC_20201002_13-22-16'
+# 4 nm pixel; 0.5 um sFOV overlap; 1600 ns dwell time 
+root =  r'M:\hess\calibration_tests_10_2020\calibration_4nm_05um_1600ns_noSC_20201002_13-22-16'
 ###################################
 
 # names of the folders containing the different "shift" experiments
@@ -379,15 +379,16 @@ with open(scan_distortion_measurement_path, 'w') as g:
         IJ.log('fitGoodness ' + str(cv.getFitGoodness()))
         IJ.log('formula ' + str(cv.getFormula()))
         fit_params = cv.getParams()
-        IJ.log('fit_params' + str(fit_params))
+        IJ.log('fit_params' + str(fit_params))      
         
         # write the fit results to file
         g.write(
             'sFOV\t' + str(sFOV) + '\t'
-            'fit\t' + str(cv.getFit()) + '\t'
-            'fitGoodness\t' + str(cv.getFitGoodness()) + '\t'
-            'formula\t' + str(cv.getFormula()) + '\t'
-            'fit_params\t' + str(fit_params) + '\n')
+            + 'a\t' + str(fit_params[0]) + '\t'
+            + 'b\t' + str(fit_params[1]) + '\t'
+            + 'c\t' + str(fit_params[2]) + '\t'
+            + 'formula\t' + str(cv.getFormula()) + '\t'
+            + 'fitGoodness\t' + str(cv.getFitGoodness()) + '\n')
 
 
         # # # # # The following commented code applies a scan correction using bigwarp.

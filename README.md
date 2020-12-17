@@ -35,3 +35,17 @@ The script
 - creates a montage like below to see the scan distortion on individual beams
 
 ![Scan distortions](example_scan_distortion.jpg?raw=true "Scan distortions")
+
+
+The fit results of mFOV 0 are in the repo:
+- 8nm_400ns.txt
+- 8nm_1600ns.txt
+- 4nm_400ns.txt
+- 4nm_1600ns.txt
+
+The mean and std of the 3 fit parameters across all 61 beams are shown here for mFOV 0.
+![a](a.jpg?raw=true "a")
+![b](b.jpg?raw=true "b")
+![b](c.jpg?raw=true "c")
+
+
