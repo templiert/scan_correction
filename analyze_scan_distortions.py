@@ -45,61 +45,24 @@ print(all_a)
 
 
 # plot mean,std of a
-fig, ax = plt.subplots()
-ax.errorbar(
-    range(len(all_a)),
-    [np.mean(a) for a in all_a],
-    [np.std(a) for a in all_a],
-    linestyle = 'None',
-    fmt = 'o')
+for variable in ['a', 'b', 'c']:
+    fig, ax = plt.subplots()
+    all_variable = vars()['all_' + variable]
+    ax.errorbar(
+        range(len(all_variable)),
+        [np.mean(a) for a in all_variable],
+        [np.std(a) for a in all_variable],
+        linestyle = 'None',
+        fmt = 'o')
 
-ax.set_title(
-    'Scan correction fit y = a*exp(-bx)+c)'
-    '\n Mean and std for all beams in mFOV 0')
-ax.set_ylabel('a', fontsize = 30)
-ax.set_xticks([0,1,2,3])
-ax.set_xticklabels(conditions)
-for tick in ax.get_xticklabels():
-    tick.set_rotation(55)
-fig.savefig('a.jpg', bbox_inches='tight')
-
-# plot mean,std of b
-fig, ax = plt.subplots()
-ax.errorbar(
-    range(len(all_b)),
-    [np.mean(b) for b in all_b],
-    [np.std(b) for b in all_b],
-    linestyle = 'None',
-    fmt = 'o')
-
-ax.set_title(
-    'Scan correction fit y = a*exp(-bx)+c)'
-    '\n Mean and std for all beams in mFOV 0')
-ax.set_ylabel('b', fontsize = 30)
-ax.set_xticks([0,1,2,3])
-ax.set_xticklabels(conditions)
-for tick in ax.get_xticklabels():
-    tick.set_rotation(55)
-fig.savefig('b.jpg', bbox_inches='tight')
-
-# plot mean,std of c
-fig, ax = plt.subplots()
-ax.errorbar(
-    range(len(all_c)),
-    [np.mean(c) for c in all_c],
-    [np.std(c) for c in all_c],
-    linestyle = 'None',
-    fmt = 'o')
-
-ax.set_title(
-    'Scan correction fit y = a*exp(-bx)+c)'
-    '\n Mean and std for all beams in mFOV 0')
-ax.set_ylabel('c', fontsize = 30)
-ax.set_xticks([0,1,2,3])
-ax.set_xticklabels(conditions)
-for tick in ax.get_xticklabels():
-    tick.set_rotation(55)
-fig.savefig('c.jpg', bbox_inches='tight')
-
+    ax.set_title(
+        'Scan correction fit y = a*exp(-bx)+c'
+        '\n Mean and std for all beams in mFOV 0')
+    ax.set_ylabel(variable, fontsize = 30)
+    ax.set_xticks([0,1,2,3])
+    ax.set_xticklabels(conditions)
+    for tick in ax.get_xticklabels():
+        tick.set_rotation(55)
+    fig.savefig(variable + '.jpg', bbox_inches='tight')
 
 plt.show()
