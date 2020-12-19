@@ -209,7 +209,7 @@ x_to_fit = []
 y_to_fit = []
 
 # width of the sliding vertical window
-vertical_strip_width = 50
+vertical_strip_width = 20
 
 # im_coordinates_all_spshifts is the list of paths of the text files "full_image_coordinates.txt" that contain the
 # coordinates of all sFOVs in each shift experiment.
@@ -299,7 +299,7 @@ with open(scan_distortion_measurement_path, 'w') as g:
         extension, extSize, paddedDimensions, fftSize = getFFTParamsFromImps(
             im_1,
             im_2,
-            r1 = Rectangle(0, 0, 3*vertical_strip_width, im_2.getHeight()),
+            r1 = Rectangle(0, 0, 8 + vertical_strip_width + 2, im_2.getHeight()),
             r2 = Rectangle(0, 0, vertical_strip_width, im_2.getHeight()))
 
         # initializing list of subpixelshifts
@@ -317,12 +317,12 @@ with open(scan_distortion_measurement_path, 'w') as g:
             # We take the narrow band 3 times wider than v2.
 
             # the following is clear when looking at the schematic
-            start_of_v1_in_im_1 = im_1.getWidth() - (int(round(end_of_im_1_in_im_2)) - s + vertical_strip_width)
+            start_of_v1_in_im_1 = im_1.getWidth() - (int(round(end_of_im_1_in_im_2)) - s + 8)
 
             r1 = Rectangle(
                 start_of_v1_in_im_1,
                 0,
-                3*vertical_strip_width,
+                8 + vertical_strip_width + 2,
                 im_2.getHeight())
             v1 = getViewFromImglib2Im(img_1, r1)
             # if s == 29:
@@ -360,11 +360,11 @@ with open(scan_distortion_measurement_path, 'w') as g:
         # fit a single scan correction for all beams.
         # (even though a correction for each of the 61 beams is probably needed)
         x_to_fit = x_to_fit + [a[0] for a in spshifts]
-        y_to_fit = y_to_fit + [vertical_strip_width - a[1] for a in spshifts]
+        y_to_fit = y_to_fit + [8 - a[1] for a in spshifts]
 
         cv = CurveFitter(
             [a[0] for a in spshifts],
-            [vertical_strip_width - a[1] for a in spshifts])
+            [8 - a[1] for a in spshifts])
 
         # fit the distortion measurements
         cv.doFit(CurveFitter.EXP_WITH_OFFSET)
@@ -373,7 +373,8 @@ with open(scan_distortion_measurement_path, 'w') as g:
         # cv.doFit(CurveFitter.POLY3)
 
         plot = cv.getPlot()
-        # plot.show()
+        plot.show()
+        8/0
         plot_images.append(plot.getImagePlus())
         IJ.log('sFOV ' + str(sFOV))
         IJ.log('fitGoodness ' + str(cv.getFitGoodness()))
